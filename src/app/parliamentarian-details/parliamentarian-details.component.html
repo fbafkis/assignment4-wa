@@ -1,0 +1,32 @@
+<div style="width: 100%; padding:40px; display:flex; justify-content: center;">
+
+  <mat-card class="parliamentarian-card" style="max-width: 500px;">
+    <mat-card-header>
+      <mat-card-title>{{name}}</mat-card-title>
+      <mat-card-subtitle>
+        <div *ngIf="birthDate; else noBirtDatelBlock">{{birthDate.substring(0, 10)}}</div>
+        <ng-template #noBirtDatelBlock>
+          <div>Birthdate not available.</div>
+        </ng-template>
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <div *ngIf="picture; else noPhotoBlock"><img mat-card-image src="{{picture}}"
+                                                 alt="Photo of a parlamentarian"></div>
+    <ng-template #noPhotoBlock>
+      <div *ngIf="gender==1; else maleNoPhotoBlock"><img mat-card-image src="/assets/img/avatar_woman.jpg"
+                                                         alt="image"></div>
+      <ng-template #maleNoPhotoBlock>
+        <div><img mat-card-image src="/assets/img/avatar_man.jpg" alt="image"></div>
+      </ng-template>
+    </ng-template>
+
+
+    <mat-card-actions style="text-align: center;">
+
+    </mat-card-actions>
+  </mat-card>
+
+
+
+</div>
