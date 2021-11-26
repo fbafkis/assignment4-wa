@@ -3,7 +3,9 @@
   <mat-card class="parliamentarian-card" style="max-width: 500px;" *ngIf="dataReady else loading">
     <mat-card-header>
       <mat-card-title>{{name}}</mat-card-title>
+      &nbsp;
       <mat-card-subtitle>
+        Member number: {{id}}
         <div *ngIf="birthDate; else noBirtDatelBlock">{{birthDate.substring(0, 10)}}</div>
         <ng-template #noBirtDatelBlock>
           <div>Birthdate not available.</div>
@@ -20,15 +22,25 @@
         <div><img mat-card-image src="/assets/img/avatar_man.jpg" alt="image"></div>
       </ng-template>
     </ng-template>
-
-
+<div style="display: flex; align-items: center">
+    <h3 style="margin-right: 10px">Belonging party:</h3><mat-chip-list style="margin-right: 10px;">
+  <mat-chip color="accent" >{{party}}</mat-chip></mat-chip-list> since: {{memberDate}}</div>
+    <hr>
+    <h3>Personal websites:</h3>
+    <div *ngIf="personalWebSites.length; else noUrlsBlock">
+      <div *ngFor="let w of personalWebSites">
+        <p>{{w.WebURL}}</p>
+      </div>
+    </div>
+    <ng-template #noUrlsBlock><p>No personal sites available!</p></ng-template>
     <mat-card-actions style="text-align: center;">
 
     </mat-card-actions>
   </mat-card>
 
   <ng-template #loading>
-    <div style="width: 100%; display:flex; justify-content: center; align-items: center"><h2 style="margin-right: 20px;">Loading...</h2>
+    <div style="width: 100%; display:flex; justify-content: center; align-items: center"><h2
+      style="margin-right: 20px;">Loading...</h2>
       <mat-spinner></mat-spinner>
     </div>
   </ng-template>

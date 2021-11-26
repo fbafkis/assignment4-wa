@@ -12,9 +12,12 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
 import { ParliamentariansListComponent } from './parliamentarians-list/parliamentarians-list.component';
 import { ParliamentarianDetailsComponent } from './parliamentarian-details/parliamentarian-details.component';
-import {ParliamentariansService} from "./parliamentarians-service.service";
-import {PartiesService} from "./parties-service.service";
-import {MemberPartiesService} from "./member-parties-service.service";
+import {ParliamentariansService} from "./parliamentarians.service";
+import {PartiesService} from "./parties.service";
+import {MemberPartiesService} from "./member-parties.service";
+import {WebsitesService} from "./websites.service";
+import {MatChipsModule} from '@angular/material/chips';
+
 
 @NgModule({
   declarations: [
@@ -35,8 +38,9 @@ import {MemberPartiesService} from "./member-parties-service.service";
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
+    MatChipsModule
   ],
-  providers: [ParliamentariansService,PartiesService,MemberPartiesService],
+  providers: [ParliamentariansService,PartiesService,MemberPartiesService, WebsitesService],
   bootstrap: [AppComponent]
 })
 

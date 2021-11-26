@@ -27,9 +27,7 @@ export class PartiesService {
   get parties() {
 
     if (!this.partiesCache$) {
-
       this.partiesCache$= this.requestParties();
-
     }
     return this.partiesCache$;
   }

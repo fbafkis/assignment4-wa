@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { MemberPartiesServiceService } from './member-parties-service.service';
+import { MemberPartiesServiceService } from './member-parties.service';
 
 describe('MemberPartiesServiceService', () => {
   let service: MemberPartiesServiceService;

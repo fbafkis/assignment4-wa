@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PartiesServiceService } from './parties-service.service';
+import { PartiesServiceService } from './parties.service';
 
 describe('PartiesServiceService', () => {
   let service: PartiesServiceService;
