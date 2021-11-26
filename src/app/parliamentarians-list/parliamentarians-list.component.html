@@ -1,8 +1,6 @@
 <div style="display:flex; justify-content: center;"><h1>List of Parliamentarians</h1></div>
 
-<div style="display:flex; justify-content: center;">
 
-</div>
 <div *ngIf="parliamentarians$ | async; else loading">
   <mat-grid-list cols="3" rowHeight="1:1">
     <mat-grid-tile *ngFor="let p of parliamentarians$ | async">
@@ -31,7 +29,7 @@
 
           <mat-card-actions style="text-align: center;">
             <a mat-raised-button color="primary"
-               [routerLink]="['/details', p.PersonId, p.ParliamentaryName, p.BirthDate, p.PhotoURL, p.GenderTypeID]">Details</a>
+               [routerLink]="['/details', p.PersonID, p.ParliamentaryName, p.BirthDate, p.PhotoURL, p.GenderTypeID]">Details</a>
           </mat-card-actions>
         </mat-card>
       </div>

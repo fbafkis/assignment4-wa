@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {PListService, Parliamentarian} from "../data.service";
+import {ParliamentariansService, Parliamentarian} from "../parliamentarians-service.service";
 import {Observable} from "rxjs";
 
 @Component({
@@ -10,30 +10,14 @@ import {Observable} from "rxjs";
 export class ParliamentariansListComponent implements OnInit {
   parliamentarians$: Observable<Array<Parliamentarian>> | undefined;
 
-  constructor(private pListService: PListService) {
+  constructor(private pListService: ParliamentariansService) {
   }
 
   ngOnInit(): void {
 
-
     this.parliamentarians$ = this.pListService.parliamentarians;
 
     console.log(this.pListService.parliamentarians);
-
-    if (!this.parliamentarians$.subscribe()) {
-
-      //this.parlamentarians$.sort((a: any, b: any) => a.ParliamentaryName.localeCompare(b.ParliamentaryName));
-      hideloader();
-    }
-
-
-    function hideloader() {
-
-
-      document.getElementById('loading')!.style.display = 'none';
-
-    }
-
 
   }
 

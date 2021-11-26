@@ -4,8 +4,7 @@ import {Observable} from 'rxjs';
 import {shareReplay, map} from 'rxjs/operators';
 
 export interface Parliamentarian {
-
-  PersonId: number;
+  PersonID: number;
   PhotoURL: string;
   Notes: string;
   BirthDate: string;
@@ -16,24 +15,24 @@ export interface Parliamentarian {
   IsCurrent: boolean;
 }
 
-
 @Injectable()
-export class PListService {
+export class ParliamentariansService {
 
-  private cache: Observable<Array<Parliamentarian>> | null | undefined;
+  private pListCache$: Observable<Array<Parliamentarian>> | null | undefined;
 
   constructor(private http: HttpClient) {
   }
 
   get parliamentarians() {
-  if(!this.cache) {
-    this.cache = this.requestParliamentarians().pipe(shareReplay(1));
-  }
+    if (!this.pListCache$) {
+      this.pListCache$ = this.requestParliamentarians().pipe(shareReplay(1));
+    }
 
-    return this.cache;
+    return this.pListCache$;
   }
 
   private requestParliamentarians() {
-    return this.http.get<Array<Parliamentarian>>("https://data.parliament.scot/api/members").pipe(map(response => response.sort((a: any, b: any) => a.ParliamentaryName.localeCompare(b.ParliamentaryName))));
+    return this.http.get<Array<Parliamentarian>>("https://data.parliament.scot/api/members").pipe(map(
+      response => response.sort((a: any, b: any) => a.ParliamentaryName.localeCompare(b.ParliamentaryName))));
   }
 }

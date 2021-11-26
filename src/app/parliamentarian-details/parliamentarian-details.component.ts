@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, ParamMap} from "@angular/router";
+import {PartiesService, Party } from "../parties-service.service";
+import {MemberPartiesService, MemberParty} from "../member-parties-service.service";
+import {Observable, combineLatest, concat} from "rxjs";
 
 @Component({
   selector: 'app-parliamentarian-details',
@@ -15,26 +18,66 @@ export class ParliamentarianDetailsComponent implements OnInit {
   urls:any;
   gender:any;
 
-  constructor(private route: ActivatedRoute) { }
+  parties?:Array<Party>;
+  membersParties?:Array<MemberParty>;
+  params?:ParamMap;
+  partyId?:any;
+  dataReady=false;
+
+  constructor(private route: ActivatedRoute, private partiesService:PartiesService,
+              private memberPartiesService:MemberPartiesService) { }
 
   ngOnInit(): void {
 
-    this.route.paramMap.subscribe(params => {
+  combineLatest(this.partiesService.parties,this.memberPartiesService.memberParties, this.route.paramMap).subscribe(
 
+    res=>{this.parties=res[0]; this.membersParties= res[1]; this.params=res[2];
 
-      this.id=params.get("id");
-      this.name=params.get("name");
-      this.picture=params.get("picture");
-      if(params.get("birthDate")=="null")
+      this.id=this.params.get("id");
+      this.name=this.params.get("name");
+      this.picture=this.params.get("picture");
+      if(this.params.get("birthDate")=="null")
         this.birthDate=null;
       else
-        this.birthDate=params.get("birthDate");
-      this.gender=params.get("gender");
+        this.birthDate=this.params.get("birthDate");
+      this.gender=this.params.get("gender");
+
+      this.membersParties?.forEach((element)=>{
+        if(element.PersonID.toString()==this.params?.get("id")){
+          this.partyId=element.PartyID; console.log(this.partyId);
+        }
+      })
+
+      if(this.partyId){
+
+        this.parties?.forEach((element)=> {
+          if(element.ID==this.partyId){
+            this.party=element.ActualName;
+
+          }
+        })
+
+      }
+
+      console.log(this.party)
+
+      this.dataReady=true;
+    }
+  )
 
 
-    });
+  //  this.partiesService.parties.subscribe(parties => {
 
-  }
+
+      //this.parties= parties;
+    //});
+
+
+
+    }
+
+
+
 
 
 }
