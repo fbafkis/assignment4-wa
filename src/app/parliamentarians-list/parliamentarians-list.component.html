@@ -19,10 +19,10 @@
           <div *ngIf="p.PhotoURL; else noPhotoBlock"><img mat-card-image src="{{p.PhotoURL}}"
                                                           alt="Photo of a parlamentarian"></div>
           <ng-template #noPhotoBlock>
-            <div *ngIf="p.GenderTypeID==1; else maleNoPhotoBlock"><img mat-card-image src="/assets/img/avatar_woman.jpg"
+            <div *ngIf="p.GenderTypeID==1; else maleNoPhotoBlock"><img mat-card-image src="./assets/img/avatar_woman.jpg"
                                                                        alt="image"></div>
             <ng-template #maleNoPhotoBlock>
-              <div><img mat-card-image src="/assets/img/avatar_man.jpg" alt="image"></div>
+              <div><img mat-card-image src="./assets/img/avatar_man.jpg" alt="image"></div>
             </ng-template>
           </ng-template>
 
