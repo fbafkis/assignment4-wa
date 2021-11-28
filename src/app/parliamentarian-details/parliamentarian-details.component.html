@@ -1,6 +1,7 @@
 <div style="width: 100%; padding:40px; display:flex; justify-content: center;">
 
   <mat-card class="parliamentarian-card" style="max-width: 600px;" *ngIf="dataReady else loading">
+
     <mat-card-header>
       <mat-card-title>{{name}}</mat-card-title>
       &nbsp;
@@ -13,18 +14,22 @@
       </mat-card-subtitle>
     </mat-card-header>
 
-    <div *ngIf="picture; else noPhotoBlock"><img mat-card-image src="{{picture}}"
-                                                 alt="Photo of a parlamentarian"></div>
+    <div *ngIf="picture; else noPhotoBlock"><img mat-card-image src="{{picture}}" alt="Photo of a parlamentarian"></div>
     <ng-template #noPhotoBlock>
-      <div *ngIf="gender==1; else maleNoPhotoBlock"><img mat-card-image src="./assets/img/avatar_woman.jpg"
-                                                         alt="image"></div>
+      <div *ngIf="gender==1; else maleNoPhotoBlock">
+        <img mat-card-image src="./assets/img/avatar_woman.jpg" alt="image">
+      </div>
       <ng-template #maleNoPhotoBlock>
         <div><img mat-card-image src="./assets/img/avatar_man.jpg" alt="image"></div>
       </ng-template>
     </ng-template>
-<div style="display: flex; align-items: center">
-    <h3 style="margin-right: 10px">Belonging party:</h3><mat-chip-list style="margin-right: 10px;">
-  <mat-chip color="accent" >{{party}}</mat-chip></mat-chip-list> since: {{memberDate}}</div>
+
+    <div style="display: flex; align-items: center">
+      <h3 style="margin-right: 10px">Belonging party:</h3>
+      <mat-chip-list style="margin-right: 10px;">
+        <mat-chip color="accent">{{party}}</mat-chip>
+      </mat-chip-list>
+      since: {{memberDate}}</div>
     <hr>
     <h3>Personal websites:</h3>
     <div *ngIf="personalWebSites.length; else noUrlsBlock">

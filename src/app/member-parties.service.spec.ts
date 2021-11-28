@@ -1,13 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
+import {MemberPartiesService} from './member-parties.service';
 
-import { MemberPartiesServiceService } from './member-parties.service';
-
-describe('MemberPartiesServiceService', () => {
-  let service: MemberPartiesServiceService;
+describe('MemberPartiesService', () => {
+  let service: MemberPartiesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(MemberPartiesServiceService);
+    service = TestBed.inject(MemberPartiesService);
   });
 
   it('should be created', () => {

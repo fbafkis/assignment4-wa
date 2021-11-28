@@ -3,7 +3,6 @@ import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
 
-
 export interface MemberParty {
   ID: number;
   PersonID: number;
@@ -17,17 +16,14 @@ export interface MemberParty {
 
 export class MemberPartiesService {
 
-  private memberPartiesCache$: Observable<Array<MemberParty>> | null | undefined;
+  private memberPartiesCache$?: Observable<Array<MemberParty>>;
 
   constructor(private http: HttpClient) {
   }
 
   get memberParties() {
-
     if (!this.memberPartiesCache$) {
-
       this.memberPartiesCache$ = this.requestMemberParties();
-
     }
     return this.memberPartiesCache$;
   }

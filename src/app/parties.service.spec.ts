@@ -1,13 +1,12 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
+import {PartiesService} from './parties.service';
 
-import { PartiesServiceService } from './parties.service';
-
-describe('PartiesServiceService', () => {
-  let service: PartiesServiceService;
+describe('PartiesService', () => {
+  let service: PartiesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(PartiesServiceService);
+    service = TestBed.inject(PartiesService);
   });
 
   it('should be created', () => {

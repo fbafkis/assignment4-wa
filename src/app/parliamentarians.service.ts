@@ -18,21 +18,27 @@ export interface Parliamentarian {
 @Injectable()
 export class ParliamentariansService {
 
-  private pListCache$: Observable<Array<Parliamentarian>> | null | undefined;
+  private pListCache$?: Observable<Array<Parliamentarian>>
 
   constructor(private http: HttpClient) {
   }
 
   get parliamentarians() {
     if (!this.pListCache$) {
-      this.pListCache$ = this.requestParliamentarians().pipe(shareReplay(1));
+      this.pListCache$ = this.requestParliamentarians()
+        .pipe(shareReplay(1));
     }
-
     return this.pListCache$;
   }
 
   private requestParliamentarians() {
-    return this.http.get<Array<Parliamentarian>>("https://data.parliament.scot/api/members").pipe(map(
-      response => response.sort((a: any, b: any) => a.ParliamentaryName.localeCompare(b.ParliamentaryName))));
+    return this.http.get<Array<Parliamentarian>>(
+      "https://data.parliament.scot/api/members")
+      .pipe(map(
+        response => response.sort(
+          (a: any, b: any) => a.ParliamentaryName
+            .localeCompare(b.ParliamentaryName))));
   }
 }
+
+

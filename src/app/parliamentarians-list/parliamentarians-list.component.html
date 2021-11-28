@@ -1,11 +1,12 @@
 <div style="display:flex; justify-content: center;"><h1>List of Parliamentarians</h1></div>
 
-
 <div *ngIf="parliamentarians$ | async; else loading">
   <mat-grid-list cols="3" rowHeight="1:1">
     <mat-grid-tile *ngFor="let p of parliamentarians$ | async">
       <div style="padding: 30px;">
+
         <mat-card class="parliamentarian-card">
+
           <mat-card-header>
             <mat-card-title [innerHTML]="p.ParliamentaryName"></mat-card-title>
             <mat-card-subtitle>
@@ -19,13 +20,13 @@
           <div *ngIf="p.PhotoURL; else noPhotoBlock"><img mat-card-image src="{{p.PhotoURL}}"
                                                           alt="Photo of a parlamentarian"></div>
           <ng-template #noPhotoBlock>
-            <div *ngIf="p.GenderTypeID==1; else maleNoPhotoBlock"><img mat-card-image src="./assets/img/avatar_woman.jpg"
+            <div *ngIf="p.GenderTypeID==1; else maleNoPhotoBlock"><img mat-card-image
+                                                                       src="./assets/img/avatar_woman.jpg"
                                                                        alt="image"></div>
             <ng-template #maleNoPhotoBlock>
               <div><img mat-card-image src="./assets/img/avatar_man.jpg" alt="image"></div>
             </ng-template>
           </ng-template>
-
 
           <mat-card-actions style="text-align: center;">
             <a mat-raised-button color="primary"
@@ -33,14 +34,14 @@
           </mat-card-actions>
         </mat-card>
       </div>
-
-
     </mat-grid-tile>
   </mat-grid-list>
 
 </div>
+
 <ng-template #loading>
-  <div style="width: 100%; display:flex; justify-content: center; align-items: center"><h2 style="margin-right: 20px;">Loading...</h2>
+  <div style="width: 100%; display:flex; justify-content: center; align-items: center"><h2 style="margin-right: 20px;">
+    Loading...</h2>
     <mat-spinner></mat-spinner>
   </div>
 </ng-template>

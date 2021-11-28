@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap} from "@angular/router";
 import {PartiesService, Party} from "../parties.service";
 import {MemberPartiesService, MemberParty} from "../member-parties.service";
-import {combineLatest} from "rxjs";
+import {combineLatest, Observable} from "rxjs";
 import {WebsitesService, WebSite} from "../websites.service";
 
 @Component({
@@ -10,13 +10,14 @@ import {WebsitesService, WebSite} from "../websites.service";
   templateUrl: './parliamentarian-details.component.html',
   styleUrls: ['./parliamentarian-details.component.css']
 })
+
 export class ParliamentarianDetailsComponent implements OnInit {
   id: any;
   name: any;
   birthDate: any;
   picture: any;
   party: any;
-  memberDate:any;
+  memberDate: any;
   gender: any;
   personalWebSites = new Array<WebSite>();
 
@@ -27,13 +28,16 @@ export class ParliamentarianDetailsComponent implements OnInit {
   partyId?: any;
   dataReady = false;
 
-  constructor(private route: ActivatedRoute, private partiesService: PartiesService,
-              private memberPartiesService: MemberPartiesService, private websitesService: WebsitesService) {
+  constructor(private route: ActivatedRoute,
+              private partiesService: PartiesService,
+              private memberPartiesService: MemberPartiesService,
+              private websitesService: WebsitesService) {
   }
 
   ngOnInit(): void {
-
-    combineLatest(this.partiesService.parties, this.memberPartiesService.memberParties, this.route.paramMap, this.websitesService.webSites).subscribe(
+    combineLatest(this.partiesService.parties,
+      this.memberPartiesService.memberParties,
+      this.route.paramMap, this.websitesService.webSites).subscribe(
       res => {
         this.parties = res[0];
         this.membersParties = res[1];
@@ -52,10 +56,9 @@ export class ParliamentarianDetailsComponent implements OnInit {
         this.membersParties?.forEach((element) => {
           if (element.PersonID.toString() == this.params?.get("id")) {
             this.partyId = element.PartyID;
-            this.memberDate = element.ValidFromDate.substr(0,10);
+            this.memberDate = element.ValidFromDate.substr(0, 10);
           }
         })
-
         if (this.partyId) {
           this.parties?.forEach((element) => {
             if (element.ID == this.partyId) {
@@ -73,6 +76,4 @@ export class ParliamentarianDetailsComponent implements OnInit {
       }
     )
   }
-
-
 }

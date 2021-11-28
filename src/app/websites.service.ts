@@ -1,8 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
 import {map} from "rxjs/operators";
-
 
 export interface WebSite {
   ID: number;
@@ -21,13 +20,14 @@ export class WebsitesService {
   }
 
   get webSites() {
-
     if (!this.websitesCache$) {
-      this.websitesCache$= this.requestWebsites();
+      this.websitesCache$ = this.requestWebsites();
     }
     return this.websitesCache$;
   }
 
   private requestWebsites() {
-    return this.http.get<Array<WebSite>>("https://data.parliament.scot/api/websites").pipe(map(response => response));
-  }}
+    return this.http.get<Array<WebSite>>("https://data.parliament.scot/api/websites")
+      .pipe(map(response => response));
+  }
+}

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ParliamentariansService, Parliamentarian} from "../parliamentarians.service";
 import {Observable} from "rxjs";
 
@@ -7,7 +7,9 @@ import {Observable} from "rxjs";
   templateUrl: './parliamentarians-list.component.html',
   styleUrls: ['./parliamentarians-list.component.css']
 })
+
 export class ParliamentariansListComponent implements OnInit {
+
   parliamentarians$?: Observable<Array<Parliamentarian>>
 
   constructor(private pListService: ParliamentariansService) {
@@ -16,5 +18,4 @@ export class ParliamentariansListComponent implements OnInit {
   ngOnInit(): void {
     this.parliamentarians$ = this.pListService.parliamentarians;
   }
-
 }

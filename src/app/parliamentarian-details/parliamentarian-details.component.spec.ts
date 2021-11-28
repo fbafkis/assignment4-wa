@@ -1,6 +1,5 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ParliamentarianDetailsComponent } from './parliamentarian-details.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {ParliamentarianDetailsComponent} from './parliamentarian-details.component';
 
 describe('ParliamentarianDetailsComponent', () => {
   let component: ParliamentarianDetailsComponent;
@@ -8,9 +7,9 @@ describe('ParliamentarianDetailsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ParliamentarianDetailsComponent ]
+      declarations: [ParliamentarianDetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
